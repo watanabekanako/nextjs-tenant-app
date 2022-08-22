@@ -8,6 +8,10 @@ const nextConfig = {
         source: '/api/items',
         destination: 'http://localhost:8000/items',
       },
+      {
+        source: '/api/items/:slug',
+        destination: 'http://localhost:8000/items/:slug',
+      },
     ];
   },
 };

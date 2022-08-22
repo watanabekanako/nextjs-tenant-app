@@ -1,17 +1,32 @@
-import Head from 'next/head';
-import React from 'react';
-import { GetStaticPaths, GetStaticProps } from 'next';
-import { useRouter } from 'next/router';
+// export default function post({ post }) {
+//   return (
+//     <div>
+//       <h1>POST(投稿){post.id}</h1>
+//       <h2>{post.name}</h2>
+//       <p>{post.body}</p>
+//     </div>
+//   );
+// }
 
-const About = () => {
+// export async function getServerSideProps({ params }) {
+//   const id = params.post;
+//   const res = await fetch(`http://localhost:3000/api/items/${id}`);
+//   const post = await res.json();
+//   return { props: { post } };
+// }
+import { useRouter } from 'next/router';
+const UserPage = () => {
+  const [user, setUser] = useState();
   const router = useRouter();
 
-  const { id } = router.query;
+  useEffect(() => {
+    // idが変わったら（取得できたら）、ユーザーをDBから取得する
+    getUser(router.query.id).then((result) => setUser(result));
+  }, [router.query.id]);
 
-  return (
-    <div>
-      <h1>商品詳細ページ</h1>
-    </div>
-  );
+  if (user) {
+    return <div>{user.name}</div>;
+  } else {
+    return null;
+  }
 };
-export default About;

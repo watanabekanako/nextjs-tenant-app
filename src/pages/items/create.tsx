@@ -1,13 +1,10 @@
-import { useRouter } from 'next/router';
+import React from 'react';
 
-const ProductDetail = () => {
-  const router = useRouter();
-
+const About = () => {
   return (
     <div>
-      <h2>詳細詳細詳細</h2>
+      <h1>商品新規登録ページ</h1>
     </div>
   );
 };
-
-export default ProductDetail;
+export default About;
