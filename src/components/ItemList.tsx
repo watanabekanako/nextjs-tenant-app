@@ -10,7 +10,6 @@ function ItemList() {
   if (error) return <div>failed to load</div>;
 
   if (!data) return <div>loading...</div>;
-
   return (
     <table>
       <thead>
@@ -24,13 +23,8 @@ function ItemList() {
       <tbody>
         {data.map((item: any) => {
           const onClickDelete = () => {
-            // const newTodos = [...index];
-            // newTodos.splice(index, 1);
-            // alert(index);
+            alert('aaa');
           };
-          <Link href="/">
-            <a className="link">Home</a>
-          </Link>;
           return (
             <>
               <tr>

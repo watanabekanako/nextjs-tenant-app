@@ -1,32 +1,21 @@
-// export default function post({ post }) {
-//   return (
-//     <div>
-//       <h1>POST(投稿){post.id}</h1>
-//       <h2>{post.name}</h2>
-//       <p>{post.body}</p>
-//     </div>
-//   );
-// }
-
-// export async function getServerSideProps({ params }) {
-//   const id = params.post;
-//   const res = await fetch(`http://localhost:3000/api/items/${id}`);
-//   const post = await res.json();
-//   return { props: { post } };
-// }
 import { useRouter } from 'next/router';
-const UserPage = () => {
-  const [user, setUser] = useState();
+import Link from 'next/link';
+
+const Post = () => {
   const router = useRouter();
+  const { item } = router.query;
 
-  useEffect(() => {
-    // idが変わったら（取得できたら）、ユーザーをDBから取得する
-    getUser(router.query.id).then((result) => setUser(result));
-  }, [router.query.id]);
-
-  if (user) {
-    return <div>{user.name}</div>;
-  } else {
-    return null;
-  }
+  return (
+    <>
+      <h1>商品詳細画面</h1>
+      {/* <p>商品詳細</p> */}
+      <button>
+        <Link href="../items/">
+          <a>[保存]</a>
+        </Link>
+      </button>
+    </>
+  );
 };
+
+export default Post;
