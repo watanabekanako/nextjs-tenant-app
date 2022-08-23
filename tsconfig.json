@@ -24,7 +24,8 @@
     "src/components/ItemList.tsxx",
     "src/pages/items/[id].tsx",
     "src/pages/items/[id].tsx",
-    "src/pages/items/[id].tsx"
+    "src/pages/items/[id].tsx",
+    "src/components/test.js"
   ],
   "exclude": ["node_modules"]
 }

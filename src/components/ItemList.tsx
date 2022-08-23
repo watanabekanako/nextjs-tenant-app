@@ -1,15 +1,14 @@
-import useSWR from 'swr';
 import Link from 'next/link';
+import useSWR, { useSWRConfig } from 'swr';
 
 const fetcher = (resource: string, init: Object) =>
   fetch(resource, init).then((res) => res.json());
 
 function ItemList() {
   const { data, error } = useSWR('/api/items', fetcher);
-
   if (error) return <div>failed to load</div>;
-
   if (!data) return <div>loading...</div>;
+  const { mutate } = useSWRConfig();
   return (
     <table>
       <thead>
@@ -22,26 +21,24 @@ function ItemList() {
       </thead>
       <tbody>
         {data.map((item: any) => {
-          const onClickDelete = () => {
-            alert('aaa');
-          };
           return (
-            <>
-              <tr>
-                <td>{item.id}</td>
-                <td>
-                  <Link href={`/items/${item.id}`}>{item.name}</Link>
-                </td>
-                <td>{item.description}</td>
-                <td>
-                  <button onClick={() => onClickDelete()}>
-                    <Link href="/">
-                      <a>[削除]</a>
-                    </Link>
-                  </button>
-                </td>
-              </tr>
-            </>
+            <tr>
+              <td>{item.id}</td>
+              <Link href="/items/[id].tsx">
+                <td>{item.name}</td>
+              </Link>
+              <td>{item.description}</td>
+              <button
+                onClick={() => {
+                  fetch(`/api/items/${item.id}`, {
+                    method: 'DELETE',
+                  });
+                  mutate('/api/items');
+                }}
+              >
+                [削除]
+              </button>
+            </tr>
           );
         })}
       </tbody>

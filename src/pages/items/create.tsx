@@ -1,11 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
+import useSWR, { useSWRConfig } from 'swr';
 
 const About = () => {
   return (
     <div>
       <h1>商品新規登録ページ</h1>
-
       <table>
         <tr>
           <td>ID：</td>
@@ -51,4 +51,5 @@ const About = () => {
     </div>
   );
 };
+
 export default About;
