@@ -27,7 +27,7 @@ function ItemList() {
           return (
             <tr key={index}>
               <td>{item.id}</td>
-              <Link href={`/items/{item.id}`}>
+              <Link href="/items/[id].tsx">
                 <td>{item.name}</td>
               </Link>
               <td>{item.description}</td>

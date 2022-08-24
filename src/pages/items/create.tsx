@@ -39,13 +39,13 @@ const Form = () => {
     <>
       <h1>新規登録画面</h1>
       <div>
-        <h2>ID:</h2>
+        {/* <h2>ID:</h2>
         <input
           type="text"
           name="id"
           value={values.id}
           onChange={handleChange('id')}
-        />
+        /> */}
 
         <h2>名前:</h2>
         <input
