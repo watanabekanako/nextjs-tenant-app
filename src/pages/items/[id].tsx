@@ -51,85 +51,69 @@ export default function ItemCreate({ items }: any) {
   const [priceText, setPriceText] = useState(items.price);
   const onChangePriceText = (event: any) =>
     setPriceText(event.target.value);
-  const Form = () => {
-    const { mutate } = useSWRConfig();
-    const [values, setValues] = useState({
-      id: '',
-      name: '',
-      description: '',
-      price: '',
-    });
-
-    const handleChange: (name: string) => (event: any) => void =
-      (name) => (event) => {
-        const newValues = {
-          ...values,
-          [name]: event.target.value,
-        };
-        setValues(newValues);
-      };
-
-    const handleSubmit = () => {
-      const param = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json; charset=utf-8',
-        },
-
-        // リクエストボディ
-        body: JSON.stringify(values),
-      };
-      fetch(`/api/items/`, param).then((response) => response.json());
-      // .then((data) => console.log(data));
-      mutate('/api/items');
-    };
-
-    return (
-      <>
-        <h1>新規登録画面</h1>
-        <div>
-          {/* <h2>ID:</h2>
-        <input
-          type="text"
-          name="id"
-          value={values.id}
-          onChange={handleChange('id')}
-        /> */}
-
-          <h2>名前:</h2>
-          <input
-            type="text"
-            name="name"
-            value={values.name}
-            onChange={handleChange('name')}
-          />
-
-          <h2>説明: </h2>
-          <input
-            type="text"
-            name="description"
-            value={values.description}
-            onChange={handleChange('description')}
-          />
-          <h2>価格: </h2>
-          <input
-            type="text"
-            name="price"
-            value={values.price}
-            onChange={handleChange('price')}
-          />
-
-          <div>
-            <button onClick={handleSubmit}>
-              <Link href="../items/">
-                <a>保存する</a>
-              </Link>
-            </button>
-            <button>キャンセル</button>
-          </div>
-        </div>
-      </>
-    );
+  const onClickCreate = (itemData: any) => {
+    return fetch(`/api/items/${itemData.id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: nameText,
+        description: descText,
+        price: priceText,
+      }),
+    }).then((res) => res.json());
   };
+  return (
+    <div>
+      <h1>商品詳細画面</h1>
+      <table>
+        <tr>
+          <th>商品名</th>
+          <td>
+            <input
+              type="text"
+              name="name"
+              value={nameText}
+              onChange={onChangeNameText}
+            ></input>
+          </td>
+        </tr>
+        <tr>
+          <th>説明</th>
+          <td>
+            <textarea
+              name="description"
+              cols={40}
+              rows={4}
+              value={descText}
+              onChange={onChangeDescText}
+            ></textarea>
+          </td>
+        </tr>
+        <tr>
+          <th>価格</th>
+          <td>
+            <input
+              type="text"
+              name="price"
+              value={priceText}
+              onChange={onChangePriceText}
+            ></input>
+          </td>
+        </tr>
+        <tr>
+          <th>画像</th>
+          <td>
+            <input type="text" name="imageUrl"></input>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    //  <button onClick={()=>onClickCreate(items)}></button><Link href="http://localhost:3000/items">
+    //   <button onClick={()=>onClickCreate(items)}>保存</button>
+    // </Link>
+    // <Link href="/items">
+    //   <button>キャンセル</button>
+    // </Link>
+  );
 }
-export default ItemCreate;

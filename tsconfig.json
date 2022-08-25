@@ -22,9 +22,9 @@
     "**/*.tsx",
     "src/pages/items/index.tsx",
     "src/components/ItemList.js",
-    "src/pages/items/[id].tsx",
-    "src/pages/items/[id].tsx",
-    "src/pages/items/[id].tsx",
+    "src/pages/items/detail.tsx",
+    "src/pages/items/detail.tsx",
+    "src/pages/items/detail.tsx",
     "src/components/test.js"
   ],
   "exclude": ["node_modules"]
