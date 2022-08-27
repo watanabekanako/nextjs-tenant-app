@@ -107,13 +107,12 @@ export default function ItemCreate({ items }: any) {
           </td>
         </tr>
       </table>
+      <Link href="http://localhost:3000/items">
+        <button onClick={() => onClickCreate(items)}>保存</button>
+      </Link>
+      <Link href="/items">
+        <button>キャンセル</button>
+      </Link>
     </div>
-
-    //  <button onClick={()=>onClickCreate(items)}></button><Link href="http://localhost:3000/items">
-    //   <button onClick={()=>onClickCreate(items)}>保存</button>
-    // </Link>
-    // <Link href="/items">
-    //   <button>キャンセル</button>
-    // </Link>
   );
 }
